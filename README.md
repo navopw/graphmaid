@@ -2,6 +2,8 @@
 
 A modern, elegant Mermaid diagram viewer with a stunning OLED dark mode and live editing capabilities.
 
+<img width="1698" height="1281" alt="image" src="https://github.com/user-attachments/assets/e0423a02-556d-4fc4-83d9-8755930d51a2" />
+
 ## Features
 
 - **Live Mermaid Rendering**: Edit Mermaid code and see diagrams update in real-time
