@@ -1,6 +1,6 @@
 # Graphmaid
 
-A modern, elegant Mermaid diagram viewer with a stunning OLED dark mode and live editing capabilities.
+A modern, elegant Mermaid diagram viewer with a stunning dark mode and live editing capabilities.
 
 <img width="1698" height="1281" alt="image" src="https://github.com/user-attachments/assets/e0423a02-556d-4fc4-83d9-8755930d51a2" />
 
@@ -11,7 +11,6 @@ A modern, elegant Mermaid diagram viewer with a stunning OLED dark mode and live
 - **Export Options**: Download diagrams as PNG, SVG, or copy to clipboard
 - **Sample Library**: Built-in collection of Mermaid diagram examples
 - **Monaco Editor**: Full-featured code editor with syntax highlighting
-- **Responsive Design**: Works beautifully on desktop and mobile
 
 ## Tech Stack
 
