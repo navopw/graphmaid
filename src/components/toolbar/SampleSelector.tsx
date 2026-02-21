@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { sampleDiagrams, type Sample } from '../../data/samples';
 
@@ -8,10 +8,14 @@ interface SampleSelectorProps {
 
 export default function SampleSelector({ onSelectSample }: SampleSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [buttonRect, setButtonRect] = useState<DOMRect | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
+    if (buttonRef.current) {
+      setButtonRect(buttonRef.current.getBoundingClientRect());
+    }
     const handleClick = (e: MouseEvent) => {
       if (buttonRef.current && !buttonRef.current.contains(e.target as Node)) {
         setIsOpen(false);
@@ -21,16 +25,13 @@ export default function SampleSelector({ onSelectSample }: SampleSelectorProps) 
     return () => document.removeEventListener('click', handleClick);
   }, [isOpen]);
 
-  const getPosition = () => {
-    if (!buttonRef.current) return { top: 0, right: 0 };
-    const rect = buttonRef.current.getBoundingClientRect();
+  const position = useMemo(() => {
+    if (!buttonRect) return { top: 0, right: 0 };
     return {
-      top: rect.bottom + 4,
-      right: window.innerWidth - rect.right
+      top: buttonRect.bottom + 4,
+      right: window.innerWidth - buttonRect.right
     };
-  };
-
-  const position = isOpen ? getPosition() : { top: 0, right: 0 };
+  }, [buttonRect]);
 
   const dropdown = isOpen && createPortal(
     <div 

@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { Toaster } from 'sonner';
+import type { editor } from 'monaco-editor';
 import MonacoEditor from './components/editor/MonacoEditor';
 import MermaidDiagram from './components/viewer/MermaidDiagram';
 import Header from './components/layout/Header';
@@ -12,7 +13,7 @@ function App() {
   const rawCode = new URLSearchParams(window.location.search).get('code');
   const initialCode = rawCode ? atob(rawCode) : sampleDiagrams[0].code;
   const [code, setCode] = useState(initialCode);
-  const editorRef = useRef<any>(null);
+  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const { svg, error, errorLine, loading } = useMermaidRender(code);
 
   const handleSampleSelect = (sample: Sample) => {

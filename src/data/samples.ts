@@ -225,5 +225,3 @@ export const sampleDiagrams: Sample[] = [
     style Data fill:#f9731633,stroke:#f97316,stroke-width:2px`,
   },
 ];
-
-export const categories = Array.from(new Set(sampleDiagrams.map(s => s.category)));

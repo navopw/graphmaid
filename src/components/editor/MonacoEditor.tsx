@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import Editor from '@monaco-editor/react';
+import Editor, { type OnMount, type Monaco } from '@monaco-editor/react';
+import type { editor as monacoEditor } from 'monaco-editor';
 import { createDarkTheme } from './mermaid-theme';
 import initEditor from 'monaco-mermaid';
 
@@ -10,9 +11,9 @@ interface MonacoEditorProps {
 }
 
 export default function MonacoEditor({ value, onChange, errorLine }: MonacoEditorProps) {
-  const editorRef = useRef<any>(null);
+  const editorRef = useRef<monacoEditor.IStandaloneCodeEditor | null>(null);
 
-  const handleEditorDidMount = (editor: any, monaco: any) => {
+  const handleEditorDidMount: OnMount = (editor, monaco) => {
     editorRef.current = editor;
     initEditor(monaco);
     createDarkTheme(monaco);
@@ -40,7 +41,7 @@ export default function MonacoEditor({ value, onChange, errorLine }: MonacoEdito
         editorRef.current.deltaDecorations(
           [],
           [{ 
-            range: new (window as any).monaco.Range(errorLine, 1, errorLine, 1),
+            range: new ((window as { monaco?: Monaco }).monaco!).Range(errorLine, 1, errorLine, 1),
             options: { 
               isWholeLine: true, 
               className: 'errorLine',
