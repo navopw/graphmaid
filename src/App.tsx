@@ -9,7 +9,9 @@ import { useMermaidRender } from './hooks/useMermaidRender';
 import { sampleDiagrams, type Sample } from './data/samples';
 
 function App() {
-  const [code, setCode] = useState(sampleDiagrams[0].code);
+  const rawCode = new URLSearchParams(window.location.search).get('code');
+  const initialCode = rawCode ? atob(rawCode) : sampleDiagrams[0].code;
+  const [code, setCode] = useState(initialCode);
   const editorRef = useRef<any>(null);
   const { svg, error, errorLine, loading } = useMermaidRender(code);
 

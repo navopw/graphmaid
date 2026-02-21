@@ -21,6 +21,25 @@ A modern, elegant Mermaid diagram viewer with a stunning dark mode and live edit
 - Monaco Editor
 - Mermaid.js
 
+## URL Query Params
+
+You can pre-load a diagram by passing it as a base64-encoded `code` query parameter:
+
+```
+https://your-deployment.com/?code=<base64-encoded-mermaid>
+```
+
+**Example:**
+
+```bash
+# Encode your diagram
+echo -n 'graph TD
+  A --> B' | base64
+
+# Then open:
+# http://localhost:5173/?code=Z3JhcGggVEQKICBBIC0tPiBC
+```
+
 ## Getting Started
 
 ```bash
